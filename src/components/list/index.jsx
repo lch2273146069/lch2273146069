@@ -4,9 +4,10 @@ import './index.css'
 
 export default class List extends Component {
     render() {
+        const { todos } = this.props;
         return (
             <ul className='todo-main'>
-                <Item></Item>
+                {todos.map(function (item) { return <Item key={item.id} {...item}></Item> })}
             </ul>
         )
     }
