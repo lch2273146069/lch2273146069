@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './index.css'
 
 export default class Header extends Component {
+    // 限制pros类型 以及必填
+    static propTypes = {
+        AddTodo: PropTypes.func.isRequired
+    }
+
     handleKeyUp = e => {
         if (e.keyCode !== 13) return;
         const value = e.target.value;
