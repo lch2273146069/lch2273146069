@@ -2,19 +2,22 @@ import React, { Component } from 'react'
 import './index.css'
 
 export default class Item extends Component {
-    inputChange = (e) => {
-        console.log(this.props, e);
+    state = { mouse: false }
+    handleMouse = (flag) => {
+        return () => {
+            this.setState({ mouse: flag })
+        }
     }
     render() {
         const { name, Done } = this.props;
-
+        const { mouse } = this.state
         return (
-            <li>
+            <li onMouseEnter={this.handleMouse(true)} onMouseLeave={this.handleMouse(false)}>
                 <label>
-                    <input type="checkbox" checked={Done} onChange={this.inputChange} />
+                    <input type="checkbox" defaultChecked={Done} />
                     <span>{name}</span>
                 </label>
-                <button className='btn btn-danger' style={{ display: 'none' }}> 删除 </button>
+                <button className='btn btn-danger' style={{ display: mouse ? 'block' : 'none' }}> 删除 </button>
             </li>
         )
     }

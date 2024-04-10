@@ -12,10 +12,14 @@ function App() {
       { id: 2, name: '睡觉', Done: false }
     ]
   });
+  const addTodo = (dataObj) => {
+    const newTodoObj = [...state.todos, dataObj]
+    setState({ todos: newTodoObj })
+  }
   return (
     <div className="todo-container">
       <div className="todo-wrap">
-        <Header></Header>
+        <Header AddTodo={addTodo}></Header>
         <List todos={state.todos}></List>
         <Footer todos={state.todos}></Footer>
       </div>

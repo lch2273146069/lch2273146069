@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import './index.css'
 
 export default class Header extends Component {
-    handleKeyUp = (e) => {
-        if (e.keyCode != 13) return;
+    handleKeyUp = e => {
+        if (e.keyCode !== 13) return;
         const value = e.target.value;
-        
+        if (!value.trim()) return;
+        this.props.AddTodo({ name: value, id: Date.now(), Done: false })
+        e.target.value = ''
     }
     render() {
         return (
